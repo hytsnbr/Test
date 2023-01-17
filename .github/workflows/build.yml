@@ -25,5 +25,5 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: BootRun with Gradle
-        run: gradle bootRun --info
+      - name: Build with Gradle
+        run: gradle build --info
