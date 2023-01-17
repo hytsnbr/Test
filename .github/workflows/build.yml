@@ -26,7 +26,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Build with Gradle
-        run: gradle build --info -x test
+        run: gradle build --info
 
       - name: BootJar with Gradle
-        run: gradle bootJar --info -x test
+        run: gradle bootJar --info
