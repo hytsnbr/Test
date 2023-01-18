@@ -35,4 +35,4 @@ jobs:
         run: gradle build --info -Dspring.profiles.active="/tmp/test.yml" -Dspring.config.location="tmp/test.yml" -Dspring.config.name="test" 
 
       - name: BootRun with Gradle
-        run: gradle bootRun --info
+        run: gradle bootRun --info -Dspring.profiles.active="/tmp/test.yml" -Dspring.config.location="tmp/test.yml" -Dspring.config.name="test"
