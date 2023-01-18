@@ -27,3 +27,6 @@ jobs:
 
       - name: Build with Gradle
         run: gradle build --info
+
+      - name: BootRun with Gradle
+        run: gradle bootRun --info
