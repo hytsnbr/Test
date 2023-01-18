@@ -13,7 +13,7 @@ jobs:
           TEST: ${{ secrets.TEST }}
 
         run: |
-          echo-n $TEST | base64 --decode > ./config/test.yml
+          echo -n $TEST | base64 --decode > ./config/test.yml
           
       - uses: actions/checkout@v3
 
