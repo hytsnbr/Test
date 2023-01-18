@@ -8,13 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Translate secrets of base64 into json
-        env:
-          TEST: ${{ secrets.TEST }}
-
-        run: |
-          echo -n $TEST | base64 --decode > ./config/test.yml
-          
       - uses: actions/checkout@v3
 
       - name: Set up JDK 17
@@ -31,6 +24,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: wrapper
+      
+      - name: Translate secrets of base64 into json
+        env:
+          TEST: ${{ secrets.TEST }}
+        run: |
+          echo -n $TEST | base64 --decode > ./config/test.yml
 
       - name: Build with Gradle
         run: gradle build --info
