@@ -29,7 +29,11 @@ jobs:
         env:
           TEST: ${{ secrets.TEST }}
         run: |
-          touch /tmp/test.yml | base64 --decode > /tmp/test.yml | cat /tmp/test.yml
+          touch /tmp/test.yml | base64 --decode > /tmp/test.yml 
+      
+      - name: Test
+        run: |
+          cat /tmp/test.yml
 
       - name: Build with Gradle
         run: gradle build --info -Dspring.profiles.active="/tmp/test.yml" -Dspring.config.location="/tmp/test.yml" -Dspring.config.name="test" -Dspring.config.import="/tmp/test.yml" 
