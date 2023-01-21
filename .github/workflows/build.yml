@@ -36,7 +36,7 @@ jobs:
           cat /tmp/test.yml
 
       - name: Build with Gradle
-        run: gradle build --info --args='-Dspring.profiles.active="/tmp/test.yml" -Dspring.config.location="/tmp/test.yml" -Dspring.config.name="test" -Dspring.config.import="/tmp/test.yml"'
+        run: gradle build --info --args='--spring.profiles.active="/tmp/test.yml" --spring.config.location="/tmp/test.yml" --spring.config.name="test" --spring.config.import="/tmp/test.yml"'
 
       - name: BootRun with Gradle
-        run: gradle bootRun --info --args='-Dspring.profiles.active="/tmp/test.yml" -Dspring.config.location="//tmp/test.yml" -Dspring.config.name="test" -Dspring.config.import="/tmp/test.yml"'
+        run: gradle bootRun --info --args='--spring.profiles.active="/tmp/test.yml" --spring.config.location="//tmp/test.yml" --spring.config.name="test" --spring.config.import="/tmp/test.yml"'
