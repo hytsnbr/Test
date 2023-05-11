@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        rm -v test.txt
+        rm -v -f test.txt
         touch test.txt
     - name: git setting
       run: |
