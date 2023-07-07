@@ -18,6 +18,7 @@ jobs:
           cat test.txt
       
       - name: Diff
+        id: diff
         run: git diff --name-only --exit-code
         continue-on-error: true
         
