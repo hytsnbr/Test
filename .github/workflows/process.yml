@@ -15,9 +15,9 @@ jobs:
       - name: Create
         run: 
           date >> test.txt
+          cat test.txt
       
       - name: Diff
-        id: diff
         run: git diff --name-only --exit-code
         continue-on-error: true
         
