@@ -52,13 +52,9 @@ jobs:
                   git push --set-upstream origin ${{ env.branch_name }}
 
             - name: Create Pull Request
-              uses: repo-sync/pull-request@v2
-              with:
-                  source_branch: "${{ env.branch_name }}"
-                  destination_branch: main
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  pr_label: Update Data
-                  pr_title: "Update JSON Data: ${{env.process_date}}"
-                  pr_body: |
-                      ${{env.process_date}} 時点 更新データ
-                      
+              run: |
+                  gh pr create \
+                    --assignee @hytsnbr
+                    --base main \
+                    --title 'データ更新: ${{env.process_date}}' \
+                    --body '${{env.process_date}} 時点 更新データ'
