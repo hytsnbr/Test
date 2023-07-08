@@ -58,6 +58,7 @@ jobs:
               run: |
                   gh pr create \
                     --assignee hytsnbr \
+                    --reviewer hytsnbr \
                     --base main \
                     --title "データ更新: ${{env.process_date}}" \
                     --body "${{env.process_date}} 時点 更新データ" \
