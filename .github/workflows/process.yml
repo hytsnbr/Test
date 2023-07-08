@@ -13,11 +13,13 @@ jobs:
         steps:
             - name: set Env value
               run: |
-                  echo "process_date=`date '+%Y-%m-%d_%H-%M-%S'`" >> "$GITHUB_ENV"
+                  echo "process_date=`date '+%Y-%m-%d %H:%M:%S'`" >> "$GITHUB_ENV"
+                  echo "branch_name=update/update_data_`date '+%Y-%m-%d_%H-%M-%S'`" >> "$GITHUB_ENV"
 
             - name: check Env value
               run: |
-                  echo "${{ env.process_date }}"
+                echo "${{ env.process_date }}"
+                echo "${{ env.branch_name }}"
 
             - name: Checkout Repo
               uses: actions/checkout@v3
@@ -36,7 +38,7 @@ jobs:
               continue-on-error: true
 
             - name: Create Branch & Checkout
-              run: git checkout -b "${{ env.process_date }}"
+              run: git checkout -b "${{ env.branch_name }}"
 
             - name: Commit & Push
               if: steps.diff.outcome == 'failure'
