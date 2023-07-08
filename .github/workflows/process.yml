@@ -12,6 +12,7 @@ jobs:
 
         env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            LABEL_NAME: "JSONデータ更新"
 
         steps:
             - name: set Env value
@@ -56,10 +57,10 @@ jobs:
 
             - name: Label Create
               run: |
-                gh label create "update data" \
-                  --color "#5d9469" \
-                  --description "JSONデータ更新" \
-                  --force
+                  gh label create "${{ env.LABEL_NAME }}" \
+                    --color "#5d9469" \
+                    --description "${{ env.LABEL_NAME }}" \
+                    --force
               continue-on-error: true
 
             - name: Create Pull Request
@@ -68,6 +69,6 @@ jobs:
                     --assignee hytsnbr \
                     --reviewer hytsnbr \
                     --base main \
-                    --title "データ更新: ${{env.process_date}}" \
-                    --body "${{env.process_date}} 時点 更新データ" \
-                    --label "update data"
+                    --title "データ更新: ${{ env.process_date }}" \
+                    --body "${{ env.process_date }} 時点 更新データ" \
+                    --label "${{ env.LABEL_NAME }}"
