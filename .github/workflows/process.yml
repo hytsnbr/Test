@@ -60,4 +60,5 @@ jobs:
                     --assignee hytsnbr \
                     --base main \
                     --title "データ更新: ${{env.process_date}}" \
-                    --body "${{env.process_date}} 時点 更新データ"
+                    --body "${{env.process_date}} 時点 更新データ" \
+                    --label "update data"
