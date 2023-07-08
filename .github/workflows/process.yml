@@ -52,7 +52,6 @@ jobs:
                   git push --set-upstream origin ${{ env.branch_name }}
 
             - name: Create Pull Request
-              if: steps.commit_push.outcome == 'failure'
               uses: repo-sync/pull-request@v2
               with:
                   source_branch: "${{ env.branch_name }}"
