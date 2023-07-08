@@ -10,6 +10,9 @@ jobs:
     Process:
         runs-on: ubuntu-latest
 
+        env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         steps:
             - name: set Env value
               run: |
