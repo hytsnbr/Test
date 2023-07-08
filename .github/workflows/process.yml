@@ -1,34 +1,45 @@
 name: Process
 
 on:
-  push:
-    branches:
-      - main
+    workflow_dispatch:
 
 jobs:
-  Process:
-    runs-on: ubuntu-latest
+    Process:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+        steps:
+            - name: set Env value
+              run: |
+                  echo "process_date=date '+%Y-%m-%d %H:%M:%S'" >> "$GITHUB_ENV"
 
-      - name: Create
-        run: |
-          date >> test.txt
-          cat test.txt
-      
-      - name: Diff
-        id: diff
-        run: git diff --name-only --exit-code
-        continue-on-error: true
-        
-      - name: Commit & Push
-        run: |
-          set -x
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add .
-          date=`date '+%Y-%m-%d %H:%M:%S'`
-          git commit -m "Update: ${date}"
-          git push
-        if: steps.diff.outcome == 'failure'
+            - name: check Env value
+              run: |
+                  echo "${{ env.process_date }}"
+
+            - name: Checkout Repo
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Create
+              run: |
+                  date >> test.txt
+                  cat test.txt
+
+            - name: Diff
+              run: git diff --name-only --exit-code
+              continue-on-error: true
+
+            - name: Create Branch & Checkout
+              run: git branch
+
+            - name: Commit & Push
+              run: |
+                  set -x
+                  git config user.name github-actions[bot]
+                  git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+                  git add .
+                  date=`date '+%Y-%m-%d %H:%M:%S'`
+                  git commit -m "Update: ${date}"
+                  git push
+              if: steps.diff.outcome == 'failure'
