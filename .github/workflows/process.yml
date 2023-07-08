@@ -59,4 +59,6 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   pr_label: Update Data
                   pr_title: "Update JSON Data: ${{env.process_date}}"
-                  pr_body: ""
+                  pr_body: |
+                      ${{env.process_date}} 時点 更新データ
+                      
