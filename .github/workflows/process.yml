@@ -54,6 +54,13 @@ jobs:
                   git commit -m "Update: ${{ env.process_date }}"
                   git push --set-upstream origin ${{ env.branch_name }}
 
+            - name: Label Create
+              run: |
+                gh label create "update data" \
+                  --color "#5d9469"
+                  --description "JSONデータ更新"
+              continue-on-error: true
+
             - name: Create Pull Request
               run: |
                   gh pr create \
