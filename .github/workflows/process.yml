@@ -18,8 +18,8 @@ jobs:
 
             - name: check Env value
               run: |
-                echo "${{ env.process_date }}"
-                echo "${{ env.branch_name }}"
+                  echo "${{ env.process_date }}"
+                  echo "${{ env.branch_name }}"
 
             - name: Checkout Repo
               uses: actions/checkout@v3
@@ -41,6 +41,7 @@ jobs:
               run: git checkout -b "${{ env.branch_name }}"
 
             - name: Commit & Push
+              id: commit_push
               if: steps.diff.outcome == 'failure'
               run: |
                   set -x
@@ -49,3 +50,14 @@ jobs:
                   git add .
                   git commit -m "Update: ${{ env.process_date }}"
                   git push --set-upstream origin ${{ env.branch_name }}
+
+            - name: Create Pull Request
+              if: steps.commit_push.outcome == 'failure'
+              uses: repo-sync/pull-request@v2
+              with:
+                  source_branch: "${{ env.branch_name }}"
+                  destination_branch: main
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  pr_label: Update Data
+                  pr_title: "Update JSON Data: ${{env.process_date}}"
+                  pr_body: ""
