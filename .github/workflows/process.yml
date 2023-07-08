@@ -57,8 +57,9 @@ jobs:
             - name: Label Create
               run: |
                 gh label create "update data" \
-                  --color "#5d9469"
-                  --description "JSONデータ更新"
+                  --color "#5d9469" \
+                  --description "JSONデータ更新" \
+                  --force
               continue-on-error: true
 
             - name: Create Pull Request
