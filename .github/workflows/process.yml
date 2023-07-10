@@ -25,7 +25,7 @@ jobs:
             - name: set Env value
               run: |
                   echo "process_date=`date '+%Y-%m-%d %H:%M:%S'`" >> "$GITHUB_ENV"
-                  echo "branch_name=update/update_data_`date '+%Y-%m-%d_%H-%M-%S'`" >> "$GITHUB_ENV"
+                  echo "branch_name=json_update/update_data_`date '+%Y-%m-%d_%H-%M-%S'`" >> "$GITHUB_ENV"
 
             - name: check Env value
               run: |
