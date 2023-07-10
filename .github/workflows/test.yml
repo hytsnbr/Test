@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - "!json_update/**"
+      - "!json_update"
 jobs:
   build:
     runs-on: ubuntu-latest
