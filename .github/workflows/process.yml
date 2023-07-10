@@ -34,6 +34,13 @@ jobs:
                   echo "${{ env.branch_name }}"
 
             - name: Checkout Repo
+              if: inputs.force == ''
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Checkout Repo Force
+              if: inputs.force != ''
               uses: actions/checkout@v3
               with:
                   fetch-depth: 0
