@@ -16,9 +16,9 @@ permissions:
   pages: write
   id-token: write
 
-# 同時に複数のデプロイが走らないようにする
 concurrency:
-  group: "pages"
+  group: pages
+  # 多重起動防止
   cancel-in-progress: true
 
 jobs:
