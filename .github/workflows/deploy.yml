@@ -39,7 +39,7 @@ jobs:
 
   # ビルド
   build:
-    if: ${{ needs.cache-check.outcome }}
+    if: ${{ !cancelled() && !failure() }}
 
     uses: ./.github/workflows/build.yml
 
