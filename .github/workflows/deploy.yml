@@ -24,7 +24,6 @@ concurrency:
 jobs:
   cache-check:
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
       - name: Build Cache Restore
