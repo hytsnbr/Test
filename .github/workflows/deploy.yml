@@ -39,13 +39,13 @@ jobs:
 
   # ビルド
   build:
-    if: failure()
+    if: ${{ !cancelled() && !failure() }}
     uses: ./.github/workflows/build.yml
 
   page-setup:
     runs-on: ubuntu-latest
     if: always()
-    needs: 
+    needs:
       - cache-check
       - build
     steps:
