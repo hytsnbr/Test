@@ -28,6 +28,7 @@ jobs:
 
   page_setup:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: キャッシュリストア
         uses: actions/cache/restore@v3
@@ -51,7 +52,7 @@ jobs:
   # デプロイ
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: page_setup
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
