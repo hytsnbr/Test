@@ -56,6 +56,9 @@ jobs:
           path: ${{ github.workspace }}
           # キャッシュキー（キャッシュファイル名）
           key: cache-build-${{ github.sha }}
+      
+      - run: |
+          ls -al
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
