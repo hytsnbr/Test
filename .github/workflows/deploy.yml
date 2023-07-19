@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: キャッシュリストア
+      - name: Build Cache Restore
         uses: actions/cache/restore@v3
         with:
           # OS間共有の有効化
@@ -47,7 +47,12 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
-      - name: キャッシュリストア
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build Cache Restore
         uses: actions/cache/restore@v3
         with:
           # OS間共有の有効化
