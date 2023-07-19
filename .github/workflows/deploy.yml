@@ -24,6 +24,7 @@ concurrency:
 jobs:
   cache-check:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Build Cache Restore
@@ -39,7 +40,8 @@ jobs:
 
   # ビルド
   build:
-    if: ${{ !cancelled() && !failure() }}
+    if: ${{ needs.cache-check.outcome }}
+
     uses: ./.github/workflows/build.yml
 
   page-setup:
@@ -48,6 +50,7 @@ jobs:
     needs:
       - cache-check
       - build
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
