@@ -49,9 +49,6 @@ jobs:
           # キャッシュキー（キャッシュファイル名）
           key: cache-build-${{ github.sha }}
 
-      - run: |
-          ls -al
-
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
@@ -59,7 +56,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # dist ディレクトリを公開対象に設定する
-          path: "./dist"
+          path: ./dist
 
   # デプロイ
   deploy:
