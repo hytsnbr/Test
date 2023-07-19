@@ -29,6 +29,16 @@ jobs:
   page_setup:
     runs-on: ubuntu-latest
     steps:
+      - name: キャッシュリストア
+        uses: actions/cache/restore@v3
+        with:
+          # OS間共有の有効化
+          enableCrossOsArchive: true
+          # キャッシュ対象のパス
+          path: ${{ github.workspace }}
+          # キャッシュキー（キャッシュファイル名）
+          key: cache-build-${{ github.sha }}
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
