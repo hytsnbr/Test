@@ -29,6 +29,7 @@ jobs:
       - name: Build Cache Restore
         uses: actions/cache/restore@v3
         with:
+          fail-on-cache-miss: true
           # OS間共有の有効化
           enableCrossOsArchive: true
           # キャッシュ対象のパス
