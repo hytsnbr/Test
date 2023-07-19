@@ -44,7 +44,7 @@ jobs:
 
   page-setup:
     runs-on: ubuntu-latest
-    if: always()
+    if: ${{ !cancelled() }}
     needs:
       - cache-check
       - build
